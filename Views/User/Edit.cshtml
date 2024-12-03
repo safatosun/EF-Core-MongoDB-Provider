@@ -1,0 +1,29 @@
+﻿@model User
+
+<h2>Update @Model.Name</h2>
+<hr />
+
+<form method="post" asp-controller="User" asp-action="Edit">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="Id" />
+
+    <div class="mb-3">
+        <label asp-for="Name" class="form-label"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger" />
+    </div>
+    <div class="mb-3">
+        <label asp-for="Surname" class="form-label"></label>
+        <input asp-for="Surname" class="form-control" />
+        <span asp-validation-for="Surname" class="text-danger" />
+    </div>
+    <div class="mb-3">
+        <label asp-for="Age" class="form-label"></label>
+        <input asp-for="Age" class="form-control" />
+        <span asp-validation-for="Age" class="text-danger" />
+    </div>
+    <input type="submit" value="Update User" class="btn btn-primary" />
+</form>
+<div>
+    <a asp-controller="User" asp-action="Index">Back to list</a>
+</div>

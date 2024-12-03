@@ -1,0 +1,42 @@
+﻿@model IEnumerable<Pet>
+
+@if (TempData["PetDeleted"] != null)
+{
+    <p class="text-success">@TempData["PetDeleted"]</p>
+}
+
+@if (!Model.Any())
+{
+    <p>No results</p>
+}
+
+else
+{
+    <table class="table table-condensed table-bordered">
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Species
+            </th>
+            <th>
+                Age
+            </th>
+        </tr>
+
+        @foreach (var pet in Model)
+        {
+            <tr>
+                <td>@pet.Name</td>
+                <td>@pet.Species</td>
+                <td>@pet.Age</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@pet.Id.ToString()">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@pet.Id.ToString()">Delete</a>
+                </td>
+            </tr>
+        }
+    </table>
+
+}

@@ -1,0 +1,50 @@
+﻿@model IEnumerable<User>
+
+@if (TempData["UserDeleted"] != null)
+{
+    <p class="text-success">@TempData["UserDeleted"]</p>
+}
+
+
+@if (!Model.Any())
+{
+    <p>No results</p>
+}
+else
+{
+    <table class="table table-condensed table-bordered">
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Surname
+            </th>
+            <th>
+                Age
+            </th>
+            <th>
+                Actions
+            </th>
+        </tr>
+
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>@user.Name</td>
+                <td>@user.Surname</td>
+                <td>@user.Age</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@user.Id.ToString()">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@user.Id.ToString()">Delete</a>
+                    <a asp-controller="Pet" asp-action="Add" asp-route-userId="@user.Id.ToString()">Pet Add</a>
+                </td>
+            </tr>
+        }
+
+    </table>
+}
+
+<p>
+    <a class="btn btn-primary" asp-action="Add">Add new user</a>
+</p>

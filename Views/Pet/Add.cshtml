@@ -1,0 +1,41 @@
+﻿@model Pet
+
+<h2>Create a new pet</h2>
+<hr />
+
+@if (ViewData["ErrorMessage"] != null)
+{
+    <p class="text-danger">@ViewData["ErrorMessage"]</p>
+}
+
+@{
+    var userId = TempData["UserId"];
+}
+
+<form method="post" asp-controller="Pet" asp-action="Add">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <input type="hidden" asp-for="UserId" value="@userId" />
+    <div class="mb-3">
+        <label asp-for="Name" class="form-label"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Species" class="form-label"></label>
+        <input asp-for="Species" class="form-control" />
+        <span asp-validation-for="Species" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Age" class="form-label"></label>
+        <input asp-for="Age" class="form-control" />
+        <span asp-validation-for="Age" class="text-danger"></span>
+    </div>
+
+    <input type="submit" value="Add Pet" class="btn btn-primary" />
+</form>
+
+<div>
+    <a asp-controller="Pet" asp-action="Index">Back to pets</a>
+</div>
